@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <title>Socre Page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0-beta1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../Resources/style.css" />
+  </head>
+  <body>
+    <div class="box">
+      <h1>Leaderboard</h1>
+      <div class="scores-list" id="scores"></div>
+      <a href="../index.html" class="butn"
+        ><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;<span>Back</span></a
+      >
+    </div>
+    <style>
+      h1 {
+        padding: 0;
+      }
+      a {
+        text-decoration: none;
+      }
+      .scores-list {
+        overflow: auto;
+        background: #b999ff;
+        max-height: 220px;
+        border-radius: 10px;
+        transition: 0.5s linear;
+        color: #fff;
+      }
+      .scores-list:hover::-webkit-scrollbar-thumb {
+        background: #00000044;
+      }
+
+      .scores {
+        min-width: 40vh;
+        width: 40vw;
+        height: 45px;
+        border-bottom: 1px solid;
+        border-image: radial-gradient(
+          circle at 50% -5px,
+          white 17px,
+          transparent
+        );
+        border-image-slice: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .butn {
+        margin-top: 10px;
+        min-width: 27%;
+      }
+      ::-webkit-scrollbar {
+        width: 5px;
+        margin-right: 3px;
+        background: transparent;
+      }
+      /* ::-webkit-scrollbar-track{background: rgb(255, 255, 255);} */
+      ::-webkit-scrollbar-button {
+        display: none;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0);
+        border-radius: 10px;
+      }
+    </style>
+    <script>
+      const highScoresList = document.getElementById("scores");
+      const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+
+      highScoresList.innerHTML = highScores
+        .map((score) => {
+          return `<div class="scores px-2">
+        <div>${score.name}</div><div>${score.score}</div>
+      </div>`;
+        })
+        .join("");
+    </script>
+  </body>
+</html>
